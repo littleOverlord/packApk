@@ -1,4 +1,4 @@
-package com.example.packapp
+package com.xianquyouxi.yldj
 
 import org.junit.Test
 

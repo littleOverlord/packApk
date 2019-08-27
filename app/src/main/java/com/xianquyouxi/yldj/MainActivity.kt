@@ -11,6 +11,11 @@ import android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
 import android.os.Build
 import android.view.View
 import android.webkit.WebChromeClient
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import android.view.MotionEvent
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,11 +34,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val settings = mWebView.settings
-        mWebView.webChromeClient = WebChromeClient()
         settings.javaScriptEnabled = true
+        settings.javaScriptCanOpenWindowsAutomatically = true
         if (Build.VERSION.SDK_INT > 16) {
             settings.allowUniversalAccessFromFileURLs  = true
         }
+        settings.domStorageEnabled = true    // 默认值 false
+        settings.databaseEnabled = true      // 默认值 false
+
+        mWebView.webChromeClient = WebChromeClient()
+        mWebView.webViewClient = WebViewClient()
+        mWebView.setOnTouchListener { v, event -> false }
         mWebView.loadUrl("file:///android_asset/app.html")
     }
     /**
